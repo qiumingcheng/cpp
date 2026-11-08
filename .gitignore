@@ -1,0 +1,13 @@
+# Minimal outer workspace repository. Product repositories and generated assets
+# remain in cpp/ but are not tracked by this repository.
+/*
+!/.gitignore
+!/AGENTS.md
+!/CLAUDE.md
+!/公共文档/
+/公共文档/*
+!/公共文档/工作区维护/
+/公共文档/工作区维护/*
+!/公共文档/工作区维护/Codex云端迁移/
+/公共文档/工作区维护/Codex云端迁移/*
+!/公共文档/工作区维护/Codex云端迁移/跨机器研发工作区重建指南.md
