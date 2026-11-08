@@ -2,7 +2,7 @@
 
 本文件供所有 AI 编码代理（Claude Code、Codex 等）自动加载。`CLAUDE.md` 是本文件的软链，两处内容一致，只维护本文件。
 
-**跨机器接续入口更新：2026-11-08。** 先读本节，再按任务读取相关专题。§2～§7 保留了原 WSL 环境的操作方法与带日期实验记录；其中的历史 HEAD、安装路径、PID、端口占用、“未 push”及测试数字不能直接当作另一台机器或当前远端版本的状态。当前发布版本以 §0.2 为准，后续有新发布时同步更新该表与发布回执。
+**跨机器接续入口更新：2026-11-09。** 先读本节，再按任务读取相关专题。§2～§7 保留了原 WSL 环境的操作方法与带日期实验记录；其中的历史 HEAD、安装路径、PID、端口占用、“未 push”及测试数字不能直接当作另一台机器或当前远端版本的状态。当前发布版本以 §0.2 为准，后续有新发布时同步更新该表与发布回执。
 
 ## 0. 快速导航
 
@@ -57,24 +57,26 @@ cpp/
 
 ### 0.2 五个产品仓库、八个特性分支与接续版本
 
-下表是 **2026-11-08 云端迁移及审查修复后的发布快照**，用于新机器恢复；不是要求当前 WSL 工作树立即切换或 reset。先确认目标特性，不能用仓库默认分支替代对应特性分支，也不能把同仓的不同特性分支直接混合。
+下表是 **2026-11-09 更新后的发布快照**（八分支迁移于 2026-11-08 发布，原生图 PG 与 ORCA 测试修复于 2026-11-09 发布），用于新机器恢复；不是要求当前 WSL 工作树立即切换或 reset。先确认目标特性，不能用仓库默认分支替代对应特性分支，也不能把同仓的不同特性分支直接混合。
 
 | 特性／组件 | 个人仓库 | 分支 | 完整提交 SHA | 工作区内目录 |
 |---|---|---|---|---|
 | 距离复用＋Top-K 下推＋列裁剪 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server) | `codex/migrate-ann-distance-topk-column-pruning` | `533c4bde563f6a221f176bd41d2bffc78223c2a3` | `openGauss-server/` |
 | 向量＋标量过滤融合 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server) | `codex/migrate-vector-scalar-filter` | `f50a21152dc39813365892a6253a4b5d0821b86b` | `openGauss-vector-filter-p12/` |
 | 文本＋向量混合召回 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server) | `codex/migrate-hybrid-recall` | `bdda19c2a613c3584ac40099f1e1ae9921d9830f` | `openGauss-hybrid-recall-consolidate/` |
-| 原生多跳图／PG 内核 | [postgres](https://github.com/qiumingcheng/postgres) | `codex/migrate-pg19-native-graph` | `baefa21b3cf59657edd64f65ea999df18c36407d` | `.worktrees/pg19-graph-core/postgres19/` |
+| 原生多跳图／PG 内核 | [postgres](https://github.com/qiumingcheng/postgres) | `codex/migrate-pg19-native-graph` | `54b31bef68d6874ae10403c6ef5ff966c93cbe4d` | `.worktrees/pg19-graph-core/postgres19/` |
 | 原生多跳图／AGE 适配 | [age](https://github.com/qiumingcheng/age) | `codex/migrate-pg19-native-graph` | `dc9f36cb93c3687fceef140707cd72303b62934b` | `.worktrees/pg19-graph-core/apache-age-pg19-port/` |
 | PG19＋ORCA＋Daft／PG 基线 | [postgres](https://github.com/qiumingcheng/postgres) | `codex/migrate-pg19-orca-daft` | `7873db5369b967dd53984df34fd800003410d04f` | `postgres19/` |
-| PG19＋ORCA＋Daft／优化器与 PG 执行适配 | [pgorca](https://github.com/qiumingcheng/pgorca) | `codex/migrate-pg19-orca-daft` | `7feb770ad623863b3dcf88dbdb77e4c7757ef5d0` | `pg_orca/` |
+| PG19＋ORCA＋Daft／优化器与 PG 执行适配 | [pgorca](https://github.com/qiumingcheng/pgorca) | `codex/migrate-pg19-orca-daft` | `3e19ab2a5729f6418c8fa382072664fd632c601e` | `pg_orca/` |
 | PG19＋ORCA＋Daft／Rust Bridge 与执行引擎 | [Daft](https://github.com/qiumingcheng/Daft) | `codex/migrate-pg19-orca-daft` | `285faf468114b0d7b839c1bcf611c7e606b3dcff` | `daft/` |
 
 - 注意远端与本地目录名不同：`postgres` → `postgres19`，`pgorca` → `pg_orca`，`Daft` → `daft`，`age` → `apache-age-pg19-port`。同一特性涉及不同仓库时分支名相同；这不表示各仓 SHA 或基线相同。
 - 首组三特性的共同基线为 `7b4cd7e77b41e8254704e6d8c02bf08be9412b67`，基线上保留三个特性提交。向标融合基线为 `ba1e4ad2f99295b1b0f65e3880a05cb75a1121d4`；其他基线与提交父链见下面的发布回执。PG 协同计算分支仅保留 PG19beta2 契约基线，没有新增 PG 内核提交。
-- 本次八项审查修复已在云端完成，四个受影响分支 amend 后各仍是一条迁移提交。源码、用例及文档已静态复核；**本次迁移和修复均未编译、未运行测试**。历史通过记录不能替代这些最终 SHA 的运行验收，更不能宣称生产准入完成。
+- 2026-11-08 的八项审查修复在云端完成，四个受影响分支当时 amend 后各仍是一条迁移提交。该次迁移仅静态复核、未编译或运行测试；不能用历史通过记录替代实际版本验收。
+- 2026-11-09 在新 openEuler 22.03 WSL 环境，原生图 PG 新增后续提交 `4e99b55`（采集器私有快照命令号）和 `54b31be`（并发 expected 末尾空行），正常 fast-forward push，未重写迁移历史。图模块 31/31、PG 核心回归 245/245、graph-adj-info 两种交错 1/1、配套 AGE 43/43 与 AGE 事务私有邻接补测 11/11 通过。距离复用＋Top-K＋列裁剪方向在同机 Debug/O0 构建安装成功，原生8/8通过；向标融合方向也已完成Debug/O0构建安装、原生8/8、普通取消和模式/缓存补测40/40；HybridRecall同机Debug/O0构建安装成功、仓内hybrid_recall回归1/1通过。五个方向均完成本轮可取得提交用例的验证，具体范围及限制见下文；不据此宣称生产准入完成。本轮实际日志与问题记录位于本机 `公共文档/工作区维护/特性构建与测试/`（未作为公开仓库上传材料）。
+- 2026-11-09 ORCA 后续提交 `0d9d271` 已正常 push，补齐 `daft_loader` 遗漏的仓内 ABI 夹具和 preload 检查，取消对未发布旧任务脚本与固定 `/tmp` 目录的依赖。ON 构建安装、loader 1/1、IR 9项、成本41项及最终计划校验13项通过；OFF 独立构建及无 loader/Bridge/Arrow 动态依赖与 dpg 符号检查也已通过；随后 3e19ab2 修复新增 F01 用例未恢复 trace 导致测试成本配置被拒绝及 expected 空行；Release Bridge 构建安装、Daft SQL 16/16、Rust 155/155＋故障注入5/5、PG核心245/245、正确性14/14、Join压力/恢复及打包升级回滚矩阵均通过。完整ORCA schedule首轮33/34通过，唯一失败为修改前运行的Arrow expected空行；修正后定向1/1及完整Daft子集16/16通过，34个用例均有通过结果，首轮非零退出码保留。72小时门因缺少run_mixed_workload.sh未运行，未发布的历史1439项向标runner和Oracle原始导出也未虚构复测。所有本轮实例已停止、数据库保留。
 - 原生图最新修复的行为边界：跨角色 `REASSIGN OWNED` 会使角色绑定的派生图统计失效，新角色需要重新创建并收集；同角色迁移不变，不删除业务图或表数据。
-- WSL 中的产品源码未同步上述云端修复，且可能存在用户修改。不得从本机旧 HEAD 重建提交并覆盖远端修复，也不得为追平版本擅自 reset、clean、切分支或更新 WSL 目标仓。
+- 原迁移源 WSL 中的产品源码当时未同步上述云端修复，且可能存在用户修改；不得从该旧 HEAD 重建提交覆盖远端，也不得擅自 reset、clean、切分支。2026-11-09 的 openEuler WSL 是按指南重建的独立新环境，实际恢复和本轮测试修复见上文，不能将旧源机状态套用到当前目录。
 - 核实与更新本表时，结合用户当前指令与实际远端分支；恢复方法见[重建指南](公共文档/工作区维护/Codex云端迁移/跨机器研发工作区重建指南.md)。原机器的 `公共文档/工作区维护/Codex云端迁移/` 仍保留迁移状态、审查报告和 amend 回执，精简包不附带这些审计附件。远端已变化时先识别新旧差异，不以本表快照强行回退。
 
 ### 0.3 新机器首次接手顺序
@@ -106,7 +108,7 @@ cpp/
 
 - 默认只向用户指定的个人仓库和特性分支提交、push。除用户明确要求创建 PR 外，不调用创建 PR 工具、执行 `gh pr create` 或点击网页的 PR 创建流程，也不向 fork 的官方上游默认发起 PR。`Compare & pull request` 是可选提示，不是已存在 PR。
 - 清理 PR 仅限授权范围，关闭时保留分支和代码。`cpp` 辅助资料与产品源码分别发布，不能把一个仓库的授权当作任意其他仓库的写入授权。
-- 当前用户约定：目标源码更新、commit/amend/push 在云环境完成，禁止在 WSL 执行产品提交或 push；WSL 可只读核对、导出材料，并按明确要求维护工作区文档。用户已授权将上述四个条目发布到 `qiumingcheng/cpp`；此授权不包含上传其他本机资料。
+- 当前用户约定（2026-11-09 本机测试任务更新）：本环境允许对测试发现的必要问题直接修复、commit 并 push 到个人仓库对应特性分支，记录问题和验证；不创建 PR，不默认 amend 或 force push。此前“仅云端提交、WSL 只读”的约定属于 2026-11-08 迁移的历史边界，不覆盖本次明确授权。`qiumingcheng/cpp` 仍按上述四个条目发布辅助资料，不因此整体上传本机测试日志、产品树或数据。
 - 本次迁移修复按用户要求 amend 原迁移提交，保持提交数量和原父基线，再以精确旧 SHA 的 `--force-with-lease` 发布；lease 不匹配时先查明远端更新，不能无条件 force。这不是对所有未来开发一律重写历史的授权，后续按用户当次要求执行。
 - `qiumingcheng/cpp` 当前为公开仓库。文档和示例不写真实密码、token、cookie 或私钥；认证由本机私有配置提供。发布脚本时也要处理其机器专属认证和路径，不因本文件已整理就假定整个工作区可以原样上传。
 - 外层仓库按明确清单收录文件，不整体上传产品源码目录、`.git`、编译/安装产物、运行数据库、工具链缓存、日志、运输分片和重复源码快照。旧归档若有独立恢复价值，保留在适当存储及索引中，不作为缓存删除。
