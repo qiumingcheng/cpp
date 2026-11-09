@@ -65,7 +65,7 @@ cpp/
 | 特性／组件 | 个人仓库 | 分支 | 完整提交 SHA | 工作区内目录 |
 |---|---|---|---|---|
 | 距离复用＋Top-K 下推＋列裁剪 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server) | `codex/migrate-ann-distance-topk-column-pruning` | `533c4bde563f6a221f176bd41d2bffc78223c2a3` | `openGauss-server/` |
-| 向量＋标量过滤融合 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server) | `codex/migrate-vector-scalar-filter` | `22d4918f5e042a992d4c67a7de7957a297f27bb5` | `openGauss-vector-filter-p12/` |
+| 向量＋标量过滤融合 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server) | `codex/migrate-vector-scalar-filter` | `48772c4eb1772cc3bede0ecf8a9fdab710e9f4d9` | `openGauss-vector-filter-p12/` |
 | 文本＋向量混合召回 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server) | `codex/migrate-hybrid-recall` | `bdda19c2a613c3584ac40099f1e1ae9921d9830f` | `openGauss-hybrid-recall-consolidate/` |
 | 原生多跳图／PG 内核 | [postgres](https://github.com/qiumingcheng/postgres) | `codex/migrate-pg19-native-graph` | `54b31bef68d6874ae10403c6ef5ff966c93cbe4d` | `.worktrees/pg19-graph-core/postgres19/` |
 | 原生多跳图／AGE 适配 | [age](https://github.com/qiumingcheng/age) | `codex/migrate-pg19-native-graph` | `dc9f36cb93c3687fceef140707cd72303b62934b` | `.worktrees/pg19-graph-core/apache-age-pg19-port/` |
@@ -74,6 +74,7 @@ cpp/
 | PG19＋ORCA＋Daft／Rust Bridge 与执行引擎 | [Daft](https://github.com/qiumingcheng/Daft) | `codex/migrate-pg19-orca-daft` | `285faf468114b0d7b839c1bcf611c7e606b3dcff` | `daft/` |
 
 - 注意远端与本地目录名不同：`postgres` → `postgres19`，`pgorca` → `pg_orca`，`Daft` → `daft`，`age` → `apache-age-pg19-port`。同一特性涉及不同仓库时分支名相同；这不表示各仓 SHA 或基线相同。
+- 2026-11-09 向标融合以普通快进 push 发布合并提交 `48772c4eb1772cc3bede0ecf8a9fdab710e9f4d9`，同时保留本机原提交 `f50a21152` 与远端补包提交 `22d4918f5` 的历史。合并后文件内容与 `22d4918f5` 完全一致；源码和固定输入指纹、Python 语法检查通过，1439 项完整回归尚未在本机执行，本次同步不新增运行通过结论。
 - 首组三特性的共同基线为 `7b4cd7e77b41e8254704e6d8c02bf08be9412b67`，基线上保留三个特性提交。向标融合基线为 `ba1e4ad2f99295b1b0f65e3880a05cb75a1121d4`；其他基线与提交父链见下面的发布回执。PG 协同计算分支仅保留 PG19beta2 契约基线，没有新增 PG 内核提交。
 - 2026-11-08 的八项审查修复在云端完成，四个受影响分支当时 amend 后各仍是一条迁移提交。该次迁移仅静态复核、未编译或运行测试；不能用历史通过记录替代实际版本验收。
 - 2026-11-09 在新 openEuler 22.03 WSL 环境，原生图 PG 新增后续提交 `4e99b55`（采集器私有快照命令号）和 `54b31be`（并发 expected 末尾空行），正常 fast-forward push，未重写迁移历史。图模块 31/31、PG 核心回归 245/245、graph-adj-info 两种交错 1/1、配套 AGE 43/43 与 AGE 事务私有邻接补测 11/11 通过。距离复用＋Top-K＋列裁剪方向在同机 Debug/O0 构建安装成功，原生8/8通过；向标融合方向也已完成Debug/O0构建安装、原生8/8、普通取消和模式/缓存补测40/40；HybridRecall同机Debug/O0构建安装成功、仓内hybrid_recall回归1/1通过。五个方向均完成本轮可取得提交用例的验证，具体范围及限制见下文；不据此宣称生产准入完成。本轮实际日志与问题记录位于本机 `公共文档/工作区维护/特性构建与测试/`（未作为公开仓库上传材料）。
