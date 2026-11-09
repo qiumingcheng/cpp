@@ -8,6 +8,7 @@
 
 | 当前任务 | 先读章节 | 核心入口 |
 |---|---|---|
+| 查找图多跳、向标融合、向文融合的性能报告 | §0.8 | 三份性能主文档、远端直达链接和新环境路径 |
 | 新机器准备工作区、确认仓库和版本 | §0.1～§0.4 | 保持 `cpp/各项目` 布局；按八分支映射选择源码 |
 | 继续距离复用、列裁剪、UNION ALL Top-K 下推 | §0.2、§0.4 | `公共文档/UNION_ALL与DiskANN_TopK/` |
 | 继续向量＋标量过滤融合 | §0.2、§0.4 | `公共文档/openGauss类Oracle向标融合/执行包/` |
@@ -62,7 +63,7 @@ cpp/
 | 特性／组件 | 个人仓库 | 分支 | 完整提交 SHA | 工作区内目录 |
 |---|---|---|---|---|
 | 距离复用＋Top-K 下推＋列裁剪 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server) | `codex/migrate-ann-distance-topk-column-pruning` | `533c4bde563f6a221f176bd41d2bffc78223c2a3` | `openGauss-server/` |
-| 向量＋标量过滤融合 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server) | `codex/migrate-vector-scalar-filter` | `f50a21152dc39813365892a6253a4b5d0821b86b` | `openGauss-vector-filter-p12/` |
+| 向量＋标量过滤融合 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server) | `codex/migrate-vector-scalar-filter` | `22d4918f5e042a992d4c67a7de7957a297f27bb5` | `openGauss-vector-filter-p12/` |
 | 文本＋向量混合召回 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server) | `codex/migrate-hybrid-recall` | `bdda19c2a613c3584ac40099f1e1ae9921d9830f` | `openGauss-hybrid-recall-consolidate/` |
 | 原生多跳图／PG 内核 | [postgres](https://github.com/qiumingcheng/postgres) | `codex/migrate-pg19-native-graph` | `54b31bef68d6874ae10403c6ef5ff966c93cbe4d` | `.worktrees/pg19-graph-core/postgres19/` |
 | 原生多跳图／AGE 适配 | [age](https://github.com/qiumingcheng/age) | `codex/migrate-pg19-native-graph` | `dc9f36cb93c3687fceef140707cd72303b62934b` | `.worktrees/pg19-graph-core/apache-age-pg19-port/` |
@@ -116,6 +117,30 @@ cpp/
 ### 0.6 本文件的维护方式
 
 新版本发布后先更新 §0.2 和对应回执；新机器只更新其实际环境配置，不篡改其他机器的历史测量。历史章节中的 SHA、性能数字和二进制 hash 必须保留原归属，不能简单全局替换成新 SHA。遇到说明与实际工作树不一致时，先核实并明确记录差异；本文件不是覆盖用户最新指令或删除现有资产的理由。
+
+### 0.7 向标融合完整功能回归入口（2026-11-09 补包）
+
+向标融合分支新增仓内 [P1/P2 完整功能回归包](openGauss-vector-filter-p12/src/test/regress/diskann_filter_p12/README.md)。收到“编译、安装并测试向标融合”的任务时，先检查源码目录与用户修改；新环境缺少源码时按 §0.2 和重建指南获取该特性版本，再按此 README 准备构建依赖、Release 安装、独立实例并运行测试。只准备本任务所需项目，已有工作树版本有差异时先识别原因，不擅自覆盖。
+
+该包包含 15 组验证及辅助脚本、2 份 Oracle 原始数据、4 份固定预期和校验清单，可离线重放历史 1439 项核心检查；原生 8 项及取消复用单列。普通 fixture 由脚本创建，Oracle 固定输入和预期不得由当前产品输出替换。新环境无需为重放启动 Oracle；任务控制状态、性能和长稳测试仍按原边界。
+
+本次补包只做静态核对，未执行完整 1439 项。实际通过数量、失败和续跑范围以目标环境新输出为准，不能沿用历史结果。该测试包随产品仓获取，外层 cpp 不复制脚本或数据。此次补包与索引更新按用户本会话要求，仅在云端 amend/push，不新增提交或 PR；其他环境的既有任务授权与历史记录保留原归属。
+
+### 0.8 三项性能报告快速定位（2026-11-09 核对）
+
+查询“最后性能报告”“测试场景简表”或准备性能汇报时，优先读取下表。原完整工作区的三份正文位于各自 `公共文档/` 主题路径；精简新环境从对应产品仓取得，按下列工作区相对路径定位。远端链接固定到已核对的提交，三份正文均与原工作区文件内容一致；不要求在 cpp 外层再复制报告。
+
+| 特性 | 性能主文档（远端直达） | 新环境中相对 cpp 根的路径 |
+|---|---|---|
+| 向标融合 | [DiskANN前两阶段最终测试报告.md](https://github.com/qiumingcheng/openGauss-server/blob/22d4918f5e042a992d4c67a7de7957a297f27bb5/%E5%85%AC%E5%85%B1%E6%96%87%E6%A1%A3/openGauss%E7%B1%BBOracle%E5%90%91%E6%A0%87%E8%9E%8D%E5%90%88/DiskANN%E5%89%8D%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%9C%80%E7%BB%88%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A.md) | `openGauss-vector-filter-p12/公共文档/openGauss类Oracle向标融合/DiskANN前两阶段最终测试报告.md` |
+| 图多跳 | [主要测试场景简表.md](https://github.com/qiumingcheng/postgres/blob/54b31bef68d6874ae10403c6ef5ff966c93cbe4d/%E5%85%AC%E5%85%B1%E6%96%87%E6%A1%A3/PostgreSQL19%E5%8E%9F%E7%94%9F%E5%A4%9A%E8%B7%B3%E5%9B%BE%E6%89%A7%E8%A1%8C%E4%B8%8EAGE%E9%80%82%E9%85%8D/%E6%8A%A5%E5%91%8A/%E4%B8%BB%E8%A6%81%E6%B5%8B%E8%AF%95%E5%9C%BA%E6%99%AF%E7%AE%80%E8%A1%A8.md) | `.worktrees/pg19-graph-core/postgres19/公共文档/PostgreSQL19原生多跳图执行与AGE适配/报告/主要测试场景简表.md` |
+| 向文融合（HybridRecall） | [HybridRecall与Milvus测试数据、有效优化及结果总结.md](https://github.com/qiumingcheng/openGauss-server/blob/bdda19c2a613c3584ac40099f1e1ae9921d9830f/%E5%85%AC%E5%85%B1%E6%96%87%E6%A1%A3/%E4%B8%A4%E8%B7%AF%E5%8F%AC%E5%9B%9E%E5%AF%B9%E6%AF%94Milvus/HybridRecall%E4%B8%8EMilvus%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E3%80%81%E6%9C%89%E6%95%88%E4%BC%98%E5%8C%96%E5%8F%8A%E7%BB%93%E6%9E%9C%E6%80%BB%E7%BB%93.md) | `openGauss-hybrid-recall-consolidate/公共文档/两路召回对比Milvus/HybridRecall与Milvus测试数据、有效优化及结果总结.md` |
+
+- 向标融合看《DiskANN前两阶段最终测试报告》§5.1 的 OFF/自然 AUTO 收益与劣化主对照；测量属于 2026-10-11～12 的具体版本，不能给新提交直接套用旧性能。
+- 图多跳看《主要测试场景简表》§2.6 的 2026-10-25 复测汇总（强制路线对照，非 AUTO 选路）；完整研究记录仍按其引用定位。保留连续键等计时门未通过的限制，不称全部性能验收完成。
+- 向文融合看《HybridRecall与Milvus测试数据、有效优化及结果总结》§4.5.1～§4.5.3 的最近正式对比（2026-10-13）；后续诊断更新到 2026-10-19，诊断观察不替代正式同口径性能结果。
+
+本导航更新不代表重新运行性能测试。报告正文、历史版本及原始数字保持不变，未发布的附件不能因为正文已发布就视为齐备。
 
 ## 1. 文档类交付物的落盘与目录分层（强制）
 
