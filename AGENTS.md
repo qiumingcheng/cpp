@@ -60,7 +60,7 @@ cpp/
 
 ### 0.2 五个产品仓库、九个特性分支与接续版本
 
-下表以 **2026-11-09 更新后的发布快照**为基础（八分支迁移于 2026-11-08 发布，原生图 PG 与 ORCA 测试修复于 2026-11-09 发布），并补充 **2026-11-21 原生湖 SQL074 发布及文档更新**，用于新机器恢复；不是要求当前 WSL 工作树立即切换或 reset。先确认目标特性，不能用仓库默认分支替代对应特性分支，也不能把同仓的不同特性分支直接混合。
+下表以 **2026-11-09 更新后的发布快照**为基础（八分支迁移于 2026-11-08 发布，原生图 PG 与 ORCA 测试修复于 2026-11-09 发布），并补充 **2026-11-21 原生湖 SQL074 发布及文档更新、2026-11-22 本机重建复测修复**，用于新机器恢复；不是要求当前 WSL 工作树立即切换或 reset。先确认目标特性，不能用仓库默认分支替代对应特性分支，也不能把同仓的不同特性分支直接混合。
 
 | 特性／组件 | 个人仓库 | 分支 | 完整提交 SHA | 工作区内目录 |
 |---|---|---|---|---|
@@ -72,10 +72,11 @@ cpp/
 | PG19＋ORCA＋Daft／PG 基线 | [postgres](https://github.com/qiumingcheng/postgres) | `codex/migrate-pg19-orca-daft` | `7873db5369b967dd53984df34fd800003410d04f` | `postgres19/` |
 | PG19＋ORCA＋Daft／优化器与 PG 执行适配 | [pgorca](https://github.com/qiumingcheng/pgorca) | `codex/migrate-pg19-orca-daft` | `3e19ab2a5729f6418c8fa382072664fd632c601e` | `pg_orca/` |
 | PG19＋ORCA＋Daft／Rust Bridge 与执行引擎 | [Daft](https://github.com/qiumingcheng/Daft) | `codex/migrate-pg19-orca-daft` | `285faf468114b0d7b839c1bcf611c7e606b3dcff` | `daft/` |
-| 原生湖 SQL074／内核、扩展、SDK6、文档与测试 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server/tree/codex/migrate-native-lake) | `codex/migrate-native-lake` | `88d9d321885b0798844904e712c468ae2e1f639a` | `.worktrees/opengauss-native-lake/` |
+| 原生湖 SQL074／内核、扩展、SDK6、文档与测试 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server/tree/codex/migrate-native-lake) | `codex/migrate-native-lake` | `5500741abf868ab6dcd71afdc2636395d7b1934a` | `.worktrees/opengauss-native-lake/` |
 
-- **原生湖 SQL074（2026-11-21）**：五层迁移快照为 `ba4e1d8f4f24024f2d6e03dcd6b55188eb813766`，在其后新增本次文档补充提交（见表）。SDK6 位于 `contrib/og_lake/sdk_external/`；接续先读仓内 `integration/opengauss-native-lake/README_MIGRATION.md` 及 `公共文档/openGauss原生湖存储/迁移与异地复测指南.md`。本次外层同步[完整指南](公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端迁移与异地复测完整指南.md)和[发布回执](公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端发布回执.json)，保留远端已有的其他特性记录。
-- 原生湖仅完成静态迁移及文档回读核验，本次未编译或数据库复测；历史通过记录不能代替新环境验收。冻结测试脚本未做路径参数化，须核对旧工作区路径、`REPLAY_DIR`、`EXPECTED_*`、目录副本及 DuckDB/DuckLake 必需依赖，详见上述入口。
+- **原生湖 SQL074（2026-11-21）**：五层迁移快照为 `ba4e1d8f4f24024f2d6e03dcd6b55188eb813766`，随后文档补充提交为 `88d9d321885b0798844904e712c468ae2e1f639a`，最新本机复测修复见表与下文。SDK6 位于 `contrib/og_lake/sdk_external/`；接续先读仓内 `integration/opengauss-native-lake/README_MIGRATION.md` 及 `公共文档/openGauss原生湖存储/迁移与异地复测指南.md`。本次外层同步[完整指南](公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端迁移与异地复测完整指南.md)和[发布回执](公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端发布回执.json)，保留远端已有的其他特性记录。
+- **2026-11-21 原生湖迁移阶段**仅完成静态迁移及文档回读核验，当时未编译或数据库复测；该历史通过记录不能代替新环境验收。当时冻结测试脚本未做路径参数化，后续适配和实际验收见下一条，旧回执不改写。
+- **2026-11-22 原生湖本机复测**：普通快进发布 `5500741abf868ab6dcd71afdc2636395d7b1934a`。Make Debug/O0＋断言、Make Release/O2、CMake Release/O2均构建安装通过；SQL074 Release/Debug全套、三画像兼容性361项（122/117/122）、SQL060完整自动维护10阶段、Release历史15次调用、datavec3项及百万行/20k/50k/80表线程池压力通过，14个计划分组有实际通过结果。修复SDK54迁移缺失的有界reader（单个产品C++文件+92/-44，内核0行）及构建/测试准备问题，原断言和失败回执保留。实例全部停止、配置恢复；8000行PQ比exact慢，50k PQ平均/最低Recall为0.96/0.8，不能宣称全部性能获益或生产准入。详情见上述完整指南的本机复测结果及发布回执 `retest_publication`。
 
 - 注意远端与本地目录名不同：`postgres` → `postgres19`，`pgorca` → `pg_orca`，`Daft` → `daft`，`age` → `apache-age-pg19-port`。同一特性涉及不同仓库时分支名相同；这不表示各仓 SHA 或基线相同。
 - 2026-11-09 向标融合以普通快进 push 发布合并提交 `48772c4eb1772cc3bede0ecf8a9fdab710e9f4d9`，同时保留本机原提交 `f50a21152` 与远端补包提交 `22d4918f5` 的历史。合并后文件内容与 `22d4918f5` 完全一致；当次同步仅做源码和固定输入指纹、Python 语法检查。随后本机完整 Release 验收及测试准备修复见 §0.7。

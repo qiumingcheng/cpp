@@ -6721,7 +6721,7 @@
     "wsl_push": false,
     "created_pr": false
   },
-  "record_semantics": "原有顶层 final_commit、final_tree、layers 及 guide_item_audit/latest_guide_sync 保留五层迁移历史；后续文档发布结果单列于 documentation_publication，不将旧测试回执改判为新环境验收。",
+  "record_semantics": "原有顶层 final_commit、final_tree、layers 及 guide_item_audit/latest_guide_sync 保留五层迁移历史；后续文档发布结果单列于 documentation_publication，不将旧测试回执改判为新环境验收。；2026-11-22实际重建复测与后续普通快进发布单列于retest_publication，不覆盖前述历史。",
   "documentation_publication": {
     "verified_at": "2026-11-21T14:24:17.858671+00:00",
     "scope": "three migration follow-up findings; documentation only",
@@ -6770,5 +6770,139 @@
     "created_pr": false,
     "build_run": false,
     "tests_run": false
+  },
+  "retest_publication": {
+    "date": "2026-11-22",
+    "verified_at": "2026-11-21T19:12:01.240391+00:00",
+    "scope": "Migration-guide build/install/retest in reconstructed openEuler WSL2 environment; historical migration evidence retained",
+    "product": {
+      "repository": "qiumingcheng/openGauss-server",
+      "branch": "codex/migrate-native-lake",
+      "parent": "88d9d321885b0798844904e712c468ae2e1f639a",
+      "commit": "5500741abf868ab6dcd71afdc2636395d7b1934a",
+      "fast_forward": true,
+      "exact_remote_head_verified": true,
+      "files": [
+        {
+          "path": "contrib/og_lake/sdk/arrow_parquet_provider.cpp",
+          "sha256": "04b3692de25542d3b77e76ca2407f2142f903a75613c27d8557985bbcfb4c9c3"
+        },
+        {
+          "path": "integration/opengauss-native-lake/build_driver.py",
+          "sha256": "a99e45e72b57485ceb7ee6e9f43e6915cf98bc4b9c9c5982fa2296feb3dd8baa"
+        },
+        {
+          "path": "integration/opengauss-native-lake/pq_native_build_inputs.py",
+          "sha256": "4cd46ac6869574dac243b5e9bc1fc271219f4914ddb7c456365c8e18363e9b37"
+        },
+        {
+          "path": "integration/opengauss-native-lake/native_build_entry.sh",
+          "sha256": "57469c1da99035b494d26d90a1cbfb7e5be875ab4d77758c031453442dbc7d6d"
+        },
+        {
+          "path": "integration/opengauss-native-lake/README_MIGRATION.md",
+          "sha256": "c20513ffba082fbb1e556de89afd227172bafd57349094f6d9d5228ea5c23b7d"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk/provider_reader_budget_test.c",
+          "sha256": "28fc407aac4fd0baaf8b503ba447d16edcf6a92e708f28c821eb1d8123f90849"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk/test_reader_budget.py",
+          "sha256": "5d3fa946dea59da7f65355a7613be2a16cb36c316c755959f11eca43d13196ef"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/verify_074_suite.py",
+          "sha256": "4bbd07fce80f5313a994c5a5f34dae3088c7b9322f5d6061dc3c16ebd222a8c9"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/run_074_scale_soak_and_datavec.py",
+          "sha256": "aedb3897c610d69c3c05b4184e8479ade40184b48477ce58676fe7c3afcf40f2"
+        },
+        {
+          "path": "公共文档/openGauss原生湖存储/迁移与异地复测指南.md",
+          "sha256": "5bfbf2dcfa446da9dd0c02685ba0f93d366c5ccd1af5714102b407cf10920952"
+        }
+      ],
+      "product_source_numstat": {
+        "contrib/og_lake/sdk/arrow_parquet_provider.cpp": {
+          "added": 92,
+          "removed": 44
+        }
+      },
+      "kernel_changed_lines": 0
+    },
+    "builds": [
+      "Make Debug O0 cassert",
+      "Make Release O2",
+      "CMake Release O2"
+    ],
+    "tests": {
+      "required_groups_passed": 14,
+      "sql074_full": [
+        "release",
+        "debug"
+      ],
+      "compatibility_checks": {
+        "release": 122,
+        "debug": 117,
+        "ann-debug": 122,
+        "total": 361
+      },
+      "sql060_debug_full_stages": 10,
+      "release_history_invocations": 15,
+      "datavec_passed": 3,
+      "pq_stream_checks": 83,
+      "pq_parquet_checks": 270,
+      "sdk54_budget_regression_checks": 1971,
+      "scale_rows": 1000000,
+      "pq_scale_rows": [
+        20000,
+        50000
+      ],
+      "threadpool_lru_tables": 80,
+      "concurrent_vec_reads": 25,
+      "cancel_probes": 5,
+      "final_soak_rows": 2588,
+      "active_pins_after": 0,
+      "execution_assets_frozen_during_tests": 341
+    },
+    "issues_recorded": [
+      "ENV-001 retryable download",
+      "ENV-002 Python CA path",
+      "MIG-001 unpublished build wrappers",
+      "MIG-002 historical BLAS receipt identity",
+      "MIG-003 replay paths and local expected identities",
+      "MIG-004 generated objfiles.txt in source identity",
+      "MIG-005 SDK54 missing bounded reader repair",
+      "MIG-006 Debug fixture index timeout"
+    ],
+    "preserved_limits": [
+      "All original assertions and fixed data preserved",
+      "64 MiB SDK memory budget unchanged",
+      "Default index fixture timeout remains 300000 ms; this Debug run explicitly 1800000 ms",
+      "Failed attempts retained; early original suite teardown had removed its own temporary fixtures",
+      "PQ performance is not uniformly better: 8k PQ slower than exact; 50k mean/min recall 0.96/0.8",
+      "No 72h production/S3/OGRAC admission or exhaustive historical SQL017-055 standalone replay"
+    ],
+    "instances_stopped": true,
+    "four_profile_configs_restored_exactly": true,
+    "local_evidence": "公共文档/openGauss原生湖存储/验证/local_rebuild_20261121/final_summary.json",
+    "raw_logs_and_data_uploaded": false,
+    "workspace": {
+      "repository": "qiumingcheng/cpp",
+      "branch": "main",
+      "parent": "9bc577a0b1581f7f7d0efb2c38f9ee085d154472",
+      "files": [
+        "AGENTS.md",
+        "公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端迁移与异地复测完整指南.md",
+        "公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端发布回执.json"
+      ],
+      "commit_identity": "This receipt is published with the workspace documentation commit; its identity is obtained from Git history to avoid embedding its own SHA."
+    },
+    "method": "Local reconstructed test workspace Git; fetch before ordinary fast-forward push; existing SSH identity with strict pinned host verification",
+    "force_update": false,
+    "history_rewrite": false,
+    "created_pr": false
   }
 }
