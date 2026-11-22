@@ -72,7 +72,9 @@ cpp/
 | PG19＋ORCA＋Daft／PG 基线 | [postgres](https://github.com/qiumingcheng/postgres) | `codex/migrate-pg19-orca-daft` | `7873db5369b967dd53984df34fd800003410d04f` | `postgres19/` |
 | PG19＋ORCA＋Daft／优化器与 PG 执行适配 | [pgorca](https://github.com/qiumingcheng/pgorca) | `codex/migrate-pg19-orca-daft` | `3e19ab2a5729f6418c8fa382072664fd632c601e` | `pg_orca/` |
 | PG19＋ORCA＋Daft／Rust Bridge 与执行引擎 | [Daft](https://github.com/qiumingcheng/Daft) | `codex/migrate-pg19-orca-daft` | `285faf468114b0d7b839c1bcf611c7e606b3dcff` | `daft/` |
-| 原生湖 SQL074／内核、扩展、SDK6、文档与测试 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server/tree/codex/migrate-native-lake) | `codex/migrate-native-lake` | `439bed718d96b0e7caf4162301a402ee15a8f351` | `.worktrees/opengauss-native-lake/` |
+| 原生湖 SQL074／内核、扩展、SDK6、文档与测试 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server/tree/codex/migrate-native-lake) | `codex/migrate-native-lake` | `90b44f78bc146b6c657708c7f126789a07ca5963` | `.worktrees/opengauss-native-lake/` |
+
+- **2026-11-22 原生湖 P1 测试资产已发布**：产品分支新增提交 `90b44f78bc146b6c657708c7f126789a07ca5963`，迁入待补清单第二节全部 14 份已有资产，并增加 SDK6 构建助手与 README，测试目录现为 357 文件；19 份既有依赖脚本只做必要路径/连接适配，保留原业务断言。接续先读仓内 `README_MIGRATION.md` 的 P1 节、`sdk_external_tests/README.md` 和[待补清单](公共文档/工作区维护/Codex云端迁移/原生湖SQL074待提交与补充测试用例清单.md)。**本轮未编译、未运行新增用例，P2 仍待完成**；详情见回执 `test_assets_publication`。
 
 - **2026-11-22 原生湖测试清单同步**：新增文档提交 `439bed718d96b0e7caf4162301a402ee15a8f351`，保留 `5500741a` 的 SDK54 修复及实际复测记录；[待提交与补充测试用例清单](公共文档/工作区维护/Codex云端迁移/原生湖SQL074待提交与补充测试用例清单.md)已按原文件名发布，两仓指南 §2.3 更新为 341 个测试/驱动文件（sdk 50）。本轮仅完成 P0 文档同步，清单 P1/P2 仍为待办，未运行新的构建或测试；发布回执见 `test_inventory_publication`。
 

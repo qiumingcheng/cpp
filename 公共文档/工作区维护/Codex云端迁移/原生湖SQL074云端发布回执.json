@@ -6721,7 +6721,7 @@
     "wsl_push": false,
     "created_pr": false
   },
-  "record_semantics": "原有顶层 final_commit、final_tree、layers 及 guide_item_audit/latest_guide_sync 保留五层迁移历史；后续文档发布结果单列于 documentation_publication，不将旧测试回执改判为新环境验收。；2026-11-22实际重建复测与后续普通快进发布单列于retest_publication，不覆盖前述历史。",
+  "record_semantics": "原有顶层 final_commit、final_tree、layers 及 guide_item_audit/latest_guide_sync 保留五层迁移历史；后续文档发布结果单列于 documentation_publication，不将旧测试回执改判为新环境验收。；2026-11-22实际重建复测与后续普通快进发布单列于retest_publication，不覆盖前述历史。；P1实际测试资产迁移单列于test_assets_publication，原test_inventory_publication保留P0文档同步历史。",
   "documentation_publication": {
     "verified_at": "2026-11-21T14:24:17.858671+00:00",
     "scope": "three migration follow-up findings; documentation only",
@@ -6964,5 +6964,373 @@
     "history_rewrite": false,
     "created_pr": false,
     "method": "GitHub Cloud Connector Git Data API; expected parent checked; force=false"
+  },
+  "test_assets_publication": {
+    "date": "2026-11-22",
+    "scope": "P1 existing test assets and minimal dependent path adaptation; no P2 feature development",
+    "product": {
+      "repository": "qiumingcheng/openGauss-server",
+      "branch": "codex/migrate-native-lake",
+      "parent": "439bed718d96b0e7caf4162301a402ee15a8f351",
+      "commit": "90b44f78bc146b6c657708c7f126789a07ca5963",
+      "tree": "d97bb3ee28d055ee72a8e8f55b2157d2121f5da4",
+      "changed_files": 38,
+      "files": [
+        {
+          "path": "integration/opengauss-native-lake/README_MIGRATION.md",
+          "mode": "100644",
+          "git_blob": "bfc4115f624b198de51d6d1355986c2f37b86425",
+          "sha256": "35450d4021d1c3970f6c94eee94ab84109952978f6362b4338e68c053e310c51",
+          "bytes": 16556,
+          "source": null
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/README.md",
+          "mode": "100644",
+          "git_blob": "e6d1d090b77f1d035b11530c0b81c4db22c070a4",
+          "sha256": "2fc026e4cc7b642883515e9975d985cfa0da66dc415c13ffc93a19e699cf9497",
+          "bytes": 3971,
+          "source": null
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/anchor_probe.c",
+          "mode": "100644",
+          "git_blob": "7a26746154190be1cafbc2b7c1b632f9e03d0498",
+          "sha256": "8a05ed3a18ebd00b039c52c8cf512e40351f061b98b2d7145b628cf04d612d5f",
+          "bytes": 2782,
+          "source": "/home/qiumc/data/code/cpp/公共文档/openGauss原生湖存储/验证/pgl2_sdk_ordinal_probe/anchor_probe.c"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/build_sql_prototype.py",
+          "mode": "100755",
+          "git_blob": "035388c0bdce1d56549460fb4303da5f9d583364",
+          "sha256": "edead06ace6b4b7b7de3c830a3ee5deee81c6818c72da178c0fd6aaf38e9ec2d",
+          "bytes": 5147,
+          "source": null
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/fd_probe.c",
+          "mode": "100644",
+          "git_blob": "4b965f8274a45d483981c5051565212336e85bf6",
+          "sha256": "5386c41a95d1bfd6284b4ad3793502c332f8d85d719160df239c03444b753cb3",
+          "bytes": 6792,
+          "source": "/home/qiumc/data/code/cpp/公共文档/openGauss原生湖存储/验证/pgl2_sdk_ordinal_probe/fd_probe.c"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/host_admission_probe.c",
+          "mode": "100644",
+          "git_blob": "d05d0f249cb9f91cca56bdbe4daa984664ae873c",
+          "sha256": "a2e01af9b5d8baeb724426cd6f94cd2dfafda3ed66aa803812c519376c79b209",
+          "bytes": 3835,
+          "source": "/home/qiumc/data/code/cpp/公共文档/openGauss原生湖存储/验证/pgl2_sdk_ordinal_probe/host_admission_probe.c"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/lake_external_path.c",
+          "mode": "100644",
+          "git_blob": "c9cf992cb5d5090ac302d051909bc601bae40374",
+          "sha256": "6d8e0dd114a8379df2de7ce411f5139ca22436dcad0a4f449a46ee27bb3da568",
+          "bytes": 2656,
+          "source": "/home/qiumc/data/code/cpp/.codex_tmp/pgl2_host_admission_source_1119_01/lake_external_path.c"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/lake_external_path.h",
+          "mode": "100644",
+          "git_blob": "8f9723c3fcaf20a0a2299241c8987c31314e9356",
+          "sha256": "66f889e68f0c85e07240434140e4074a63ce62a6e65f35f8a7f8c513fd1fe6f0",
+          "bytes": 603,
+          "source": "/home/qiumc/data/code/cpp/.codex_tmp/pgl2_host_admission_source_1119_01/lake_external_path.h"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/lake_external_sql_probe.cpp",
+          "mode": "100644",
+          "git_blob": "e54725b8269bdb871797ff37471bcceb06ad3690",
+          "sha256": "1213e7b05afdd1e13846ea25c0ce257428b90c339f9fb150c1d5de5a758e8a60",
+          "bytes": 11440,
+          "source": "/home/qiumc/data/code/cpp/.codex_tmp/pgl2_host_admission_source_1119_01/lake_external_sql_probe.cpp"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/reader_probe.c",
+          "mode": "100644",
+          "git_blob": "47e4cf6dc7b0488691482147bca2bb4dca0d17a7",
+          "sha256": "d86e73e7588e524439b2c53d4a44210c22de3b8284d2c8ab469bce226f491fd3",
+          "bytes": 6040,
+          "source": "/home/qiumc/data/code/cpp/公共文档/openGauss原生湖存储/验证/pgl2_sdk_ordinal_probe/reader_probe.c"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/run_probe.sh",
+          "mode": "100755",
+          "git_blob": "dfdcf7643433a77fa17a8be3769db3abc1853537",
+          "sha256": "94ca52ba52bac60fbd7582936613c268f9e765cbd998cb01a9b1a6bd70ee3c1d",
+          "bytes": 4899,
+          "source": "/home/qiumc/data/code/cpp/公共文档/openGauss原生湖存储/验证/pgl2_sdk_ordinal_probe/run_probe.sh"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/run_sql_prototype.py",
+          "mode": "100755",
+          "git_blob": "814d6ed010f0e371a7b24c2adfcb40deb88545a4",
+          "sha256": "a1dfb5c44fc93fc5c2d682d39f33b97b62f7674e0998bc9d3a008cd4c3c9cb7a",
+          "bytes": 9777,
+          "source": "/home/qiumc/data/code/cpp/公共文档/openGauss原生湖存储/验证/pgl2_sdk_ordinal_probe/run_sql_prototype.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/oracle_060.py",
+          "mode": "100644",
+          "git_blob": "347c73331863a5d1c2d259078780e85cd77546c6",
+          "sha256": "db85003546f273e5e3d5b5d1afea3780c9bb4b161e49df838eda8f46e28db809",
+          "bytes": 27235,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/oracle_060.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_056_suite.py",
+          "mode": "100644",
+          "git_blob": "9144bd3e87ceb5e21c92651a4b181cc6b0142bee",
+          "sha256": "3d2c13ce323c344acc689e8668056914f579809c130b35febf916f911553b6cf",
+          "bytes": 24421,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_056_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_057_suite.py",
+          "mode": "100644",
+          "git_blob": "948a5dc11c9e70e00838f31fcb9ffa3e621807da",
+          "sha256": "113239a772b9158abe612f93b08da2c491f4f98de740ec2810ba4b7f5a19419a",
+          "bytes": 41483,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_057_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_058_suite.py",
+          "mode": "100644",
+          "git_blob": "8ce83e67f85b0300c289083d9099ebdcd3eb254b",
+          "sha256": "a17a46eb209b531b20f9110ae2a206ccf31a4f19348242e376ffd707d26f3599",
+          "bytes": 51403,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_058_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_059_suite.py",
+          "mode": "100644",
+          "git_blob": "a87af034d6ed836e89b371b0b5e8f33ea1e4d4bd",
+          "sha256": "76031f5a65f3bd911051e9586494c4ff1b1adeb0dcbfb8bf5f518b298cb33035",
+          "bytes": 57281,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_059_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_060_suite.py",
+          "mode": "100644",
+          "git_blob": "e5558109811c5350c3366efa05133560294de811",
+          "sha256": "eb1b9dc6e82386508dfd8dee41a585b2bae094c49888329a0fc8746dabfc9eb3",
+          "bytes": 19722,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_060_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_061_suite.py",
+          "mode": "100644",
+          "git_blob": "cfa6bc24714c51d00bdcc52ed27151839edd794d",
+          "sha256": "f2b9401233989c3c6e8d4af33b8ca1e93ea5141e5d714dd07048e0f351993819",
+          "bytes": 32151,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_061_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_062_suite.py",
+          "mode": "100644",
+          "git_blob": "c8b3016f04c9fb74ba4994232a50166675a814a1",
+          "sha256": "54ed727e19daae386e3afc18f90e7eb9f65c6d63ed34e227627cafc0eec4b319",
+          "bytes": 35676,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_062_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_063_suite.py",
+          "mode": "100644",
+          "git_blob": "d52633b2620de870f28790c58341eb73775095b1",
+          "sha256": "02824c9c94541945c8ecf26a8f1033d8c687fd14f7e286fd1842e7e7e5c6426d",
+          "bytes": 28662,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_063_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_064_suite.py",
+          "mode": "100644",
+          "git_blob": "1a532320990c8a75dd76d99288683a6fb0414dc4",
+          "sha256": "ed66d79a3bd7eeff9554e15349b503eef1fb19b9c8a0257d3033d93d3cf6458f",
+          "bytes": 41105,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_064_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_065_suite.py",
+          "mode": "100644",
+          "git_blob": "dc7d602a388711913ed82b659052b522d9ac9928",
+          "sha256": "422ac9ff8b86beb5f333c975fb0981b5f9e8d9a7add5c6df06a82b2133965963",
+          "bytes": 46571,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_065_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_066_suite.py",
+          "mode": "100644",
+          "git_blob": "9ee2d3782e177296cef5ee0a746a4a5eed8f96e8",
+          "sha256": "d335d994e922b66c62ad2f1f3a73121a1d94d85affa1e496893e7e51db2dbae5",
+          "bytes": 45063,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_066_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_067_suite.py",
+          "mode": "100644",
+          "git_blob": "da08b9246a4296be977c4ff880254a374d34d3a4",
+          "sha256": "6affce4d0cf84d6c6e1b797f0a4cd132c543b6ce8e9fe2650ea01fb49e87c21a",
+          "bytes": 22658,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_067_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_068_suite.py",
+          "mode": "100644",
+          "git_blob": "1906428ee95d96f7e082c09c55b717ca8d811a05",
+          "sha256": "1117df0f7fe25c223117ac10438f1e72787c22e09da56a6687f7a516c1bc850b",
+          "bytes": 15561,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_068_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_069_suite.py",
+          "mode": "100644",
+          "git_blob": "74e77d392fae40442fce613e6c6a632f71e69953",
+          "sha256": "b2502bba19859c0d41a9836325d34b6c9c93fffaa2cc3954dfd4f792f9dc4959",
+          "bytes": 22739,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_069_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_070_suite.py",
+          "mode": "100644",
+          "git_blob": "89bdc07538ee2bf22c1958c67828dbe9fcc7d77b",
+          "sha256": "6c97e4906dbe63e109e8d844360fd537280a2a0adec399a203f0ac3808ef0973",
+          "bytes": 30136,
+          "source": "GitHub@439bed718d96b0e7caf4162301a402ee15a8f351:integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_070_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/run_074_json_compat_suite.py",
+          "mode": "100644",
+          "git_blob": "4226d7dce220033116b5f8eb7e0ab901d0ec1c70",
+          "sha256": "fc2ffe14051ea2cf77ad9af4e3442c66cb80b60061a77bf89254853a05adbad9",
+          "bytes": 21620,
+          "source": "/tmp/native-lake-p1-sync-20261122/remote/suites_056_074/run_074_compat/run_074_json_compat_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/run_074_smp_closure_suite.py",
+          "mode": "100644",
+          "git_blob": "e112a9e50fe9325fa1b1967c0e5ab4df544e9415",
+          "sha256": "0d88ff73c68f5a04e92e9b760b8d59bf8a69905372060b61b1b1072c8908ea58",
+          "bytes": 24738,
+          "source": "/home/qiumc/.gemini/antigravity-cli/brain/c42afb00-fe75-4503-b0b5-faefda85817d/scratch/run_smp_closure_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/run_074_truncate_pq_suite.py",
+          "mode": "100644",
+          "git_blob": "37124799362efa68e174af8024ae85f51002ad4c",
+          "sha256": "a6dba8dc036dc3263f445236a72ce93eeadebd26a2971c3d205a042ed9d49f55",
+          "bytes": 34604,
+          "source": "/tmp/native-lake-p1-sync-20261122/remote/suites_056_074/run_074_compat/run_074_truncate_pq_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/run_074_vec_smp_compat_suite.py",
+          "mode": "100644",
+          "git_blob": "0af887437c15ca169dfcc4e81e20d775652addf0",
+          "sha256": "c8c56cee2322d36892c132c8938cf4ff7bf322865b1ed2905f6b3f203e6d8058",
+          "bytes": 29058,
+          "source": "/tmp/native-lake-p1-sync-20261122/remote/suites_056_074/run_074_compat/run_074_vec_smp_compat_suite.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat_campaign.py",
+          "mode": "100644",
+          "git_blob": "96ee6527269e36800c5d1f00b1b76f02fa884a8f",
+          "sha256": "24f5e1645e239c88a64f706d5805ba1493ca678afdb29d1c7bfa5422d636c8d9",
+          "bytes": 12546,
+          "source": "/home/qiumc/.gemini/antigravity-cli/brain/c42afb00-fe75-4503-b0b5-faefda85817d/scratch/run_073_campaign.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_debug_history_campaign.py",
+          "mode": "100644",
+          "git_blob": "21f5bdbca173ff8d77cbc98daa6b42a5d8f1e07f",
+          "sha256": "c83e54a88ead6ba04c64f877816f4a75a46de15c33f3dfd9d116b3e6a044d2a3",
+          "bytes": 26844,
+          "source": "/home/qiumc/.gemini/antigravity-cli/brain/c42afb00-fe75-4503-b0b5-faefda85817d/scratch/run_073_full_history_campaign.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_release_campaign.py",
+          "mode": "100644",
+          "git_blob": "29a9da092bcd1b709f13267eac46ba4da866077e",
+          "sha256": "a206610502206a795df66e69878bfeb3ac65e2d486cf6c4f746b91dbe879707d",
+          "bytes": 12544,
+          "source": "/home/qiumc/.gemini/antigravity-cli/brain/c42afb00-fe75-4503-b0b5-faefda85817d/scratch/run_release_campaign.py"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_release_perf_bench.py",
+          "mode": "100644",
+          "git_blob": "f3d923d341316ad5925dc2ac160dda19993ff496",
+          "sha256": "092941f18faedb8f5783d6b0a29dd4367bb0a2215c41e28dca2f95f8961bf3a4",
+          "bytes": 19989,
+          "source": "/home/qiumc/.gemini/antigravity-cli/brain/c42afb00-fe75-4503-b0b5-faefda85817d/scratch/run_release_perf_bench.py"
+        },
+        {
+          "path": "公共文档/openGauss原生湖存储/原生湖SQL074待提交与补充测试用例清单.md",
+          "mode": "100644",
+          "git_blob": "098ea50fdaceec7bb673fa813f36d72effcef8ed",
+          "sha256": "231f469ad77dc6c1cb5e839b841793862045cd9c5d0fe85205a189ac08250087",
+          "bytes": 19363,
+          "source": null
+        },
+        {
+          "path": "公共文档/openGauss原生湖存储/迁移与异地复测指南.md",
+          "mode": "100644",
+          "git_blob": "a44e4ab99de2540e8cd1f3d75a4cff8c0e886695",
+          "sha256": "29b874f0c85c09671769f5accdbf4a172f012f1f6947ff94784459030d2a225c",
+          "bytes": 61720,
+          "source": null
+        }
+      ],
+      "fast_forward": true,
+      "remote_head_verified": true,
+      "complete_tree_exact_match": true,
+      "integration_blob_mode_size_verified": 36
+    },
+    "workspace": {
+      "repository": "qiumingcheng/cpp",
+      "branch": "main",
+      "parent": "1fd368c84104208716ce2caaa50d98a7a3556e05",
+      "files": [
+        "AGENTS.md",
+        "公共文档/工作区维护/Codex云端迁移/原生湖SQL074待提交与补充测试用例清单.md",
+        "公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端迁移与异地复测完整指南.md",
+        "公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端发布回执.json"
+      ],
+      "commit_identity": "本回执随外层文档提交发布；自身提交 SHA 由 Git 历史标识。"
+    },
+    "inventory": {
+      "original_pending_assets": 14,
+      "new_support_files": 2,
+      "new_files": 16,
+      "modified_existing_test_scripts": 19,
+      "integration_files_before": 341,
+      "integration_files_after": 357,
+      "sdk_external_tests_files": 11
+    },
+    "validation": {
+      "python_ast_parse_files": 26,
+      "bash_syntax_files": 1,
+      "original_core_and_replay_assertions_preserved": 974,
+      "original_compat_assertions_preserved": 148,
+      "runtime_tests_run": false,
+      "compiled": false
+    },
+    "limitations": [
+      "静态迁移归档，尚未在新环境编译或运行这些新增/适配入口。",
+      "保留真实 cpp/integration 目录副本要求；其余旧 helper 的路径与冻结指纹限制仍按 README 处理，未宣称全部脚本可移植。",
+      "编排器管理隔离测试画像；Debug 历史编排保留结束后无 gaussdb 的断言。",
+      "SDK6 私有 SQL 探针需要匹配的 Debug CMake compile_commands.json、安装、SDK 与真实构建回执，不属于生产 SQL 接口。",
+      "清单 P2、历史资格包提取与外部商用/OGRAC/S3 准入不在本轮完成范围。"
+    ],
+    "production_source_changes": 0,
+    "wsl_product_tree_modified": false,
+    "wsl_commit": false,
+    "wsl_push": false,
+    "force_update": false,
+    "history_rewrite": false,
+    "created_pr": false,
+    "method": "GitHub Cloud Connector Git Data API; force=false; expected parent read before update",
+    "production_source_changed_files": 0,
+    "test_and_driver_asset_files_changed": 35
   }
 }
