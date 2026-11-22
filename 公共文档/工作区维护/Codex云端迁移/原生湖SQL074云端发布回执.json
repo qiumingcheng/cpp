@@ -7332,5 +7332,120 @@
     "method": "GitHub Cloud Connector Git Data API; force=false; expected parent read before update",
     "production_source_changed_files": 0,
     "test_and_driver_asset_files_changed": 35
+  },
+  "test_assets_retest_publication": {
+    "date": "2026-11-22",
+    "scope": "P1 incremental local rebuild and runtime validation after both branches were pulled",
+    "product": {
+      "repository": "qiumingcheng/openGauss-server",
+      "branch": "codex/migrate-native-lake",
+      "parent": "90b44f78bc146b6c657708c7f126789a07ca5963",
+      "commit": "d090c24f8553b8e50583706a542a2ad69e73ffd9",
+      "files": [
+        {
+          "path": "integration/opengauss-native-lake/README_MIGRATION.md",
+          "bytes": 17046,
+          "sha256": "8b0efd6f520f59603f9714a74210ad159e61b620a89d221a06044f5975b85c2e"
+        },
+        {
+          "path": "integration/opengauss-native-lake/build_driver.py",
+          "bytes": 34738,
+          "sha256": "ca30b538f50d8ff0298a31dbeb139f46bc1c619f8e3ae0bd03200ebda971679f"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/README.md",
+          "bytes": 4896,
+          "sha256": "fde7c11529ec42c0672e26ce22e7a686933e173fb22186066f2fb4a0490bcd7b"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/build_sql_prototype.py",
+          "bytes": 5142,
+          "sha256": "161159ad6f832b21ee15448570f8bad58cc857e50b319fe2f4b5249ef884cc6d"
+        },
+        {
+          "path": "integration/opengauss-native-lake/sdk_external_tests/run_sql_prototype.py",
+          "bytes": 12538,
+          "sha256": "37f2337b4db1a418fc8567c243ca43b88c837811349de6b53df8c82b20be2c19"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_064_suite.py",
+          "bytes": 40801,
+          "sha256": "7ca7f191bb9c886b9607e38ab47c1397c64fea5fba767fe4f070b98bc597e992"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_compat/replay_056_074/run_069_suite.py",
+          "bytes": 24707,
+          "sha256": "5dc956ec1b67b181d59c5cae7a4409813212d6c3ee6de24886b6f202fdb47818"
+        },
+        {
+          "path": "integration/opengauss-native-lake/suites_056_074/run_074_debug_history_campaign.py",
+          "bytes": 27661,
+          "sha256": "8c9f216686560a9c44b6ce85035ed1aca2cf544f59fde2956e472ac94841bc23"
+        },
+        {
+          "path": "公共文档/openGauss原生湖存储/原生湖SQL074待提交与补充测试用例清单.md",
+          "bytes": 19812,
+          "sha256": "f7bb4e5b1772e54ebe2906fba924e17b2901762b789b386fce0f075a40721f43"
+        },
+        {
+          "path": "公共文档/openGauss原生湖存储/迁移与异地复测指南.md",
+          "bytes": 63964,
+          "sha256": "10ec2ce137a15d37da94a2ed508a6b4c30812f24df4844e5fa55ae323dd2499c"
+        }
+      ],
+      "fast_forward_verified": true
+    },
+    "workspace": {
+      "repository": "qiumingcheng/cpp",
+      "branch": "main",
+      "parent": "0006e617f1674df2d6fccc6214c4325e907e67f0",
+      "commit_identity": "本回执随 cpp 提交发布，提交 SHA 由 Git 历史确定。"
+    },
+    "build": {
+      "mode": "Debug incremental",
+      "receipt_sha256": "5e630ceb16e52800d82128510cf8fdd5dd6cd5d5f9d4ef85880726cac10f171c",
+      "binary_sha256": "f91c18012fe1ce92253233f9bb0ae5c8f6b758ee611d96c5513bc5422802b769"
+    },
+    "release": {
+      "checks": 147,
+      "performance_stages": 4
+    },
+    "compatibility": {
+      "checks": 399,
+      "profiles": {
+        "debug_pool_off": 136,
+        "debug_pool_on": 122,
+        "anndebug_pool_off": 141
+      }
+    },
+    "history": {
+      "original_campaign_exit_codes": [
+        1,
+        1
+      ],
+      "affected_ann_debug_retry_exit_code": 0,
+      "profile_invocations": {
+        "debug_pool_off": 16,
+        "debug_pool_on": 16,
+        "ann-debug_pool_off": 16
+      },
+      "datavec": "3/3",
+      "SQL060_auto_maintenance_stages": 10
+    },
+    "sdk6": {
+      "standalone": "4/4",
+      "private_sql": "17/17",
+      "materialized_rows": 5000
+    },
+    "focused_retests": {
+      "SQL069": "20/20",
+      "SQL064": "50/50"
+    },
+    "product_source_changes": 0,
+    "instances_stopped": true,
+    "configs_restored": true,
+    "older_publication_records_preserved": true,
+    "force_update": false,
+    "created_pr": false
   }
 }
