@@ -72,8 +72,9 @@ cpp/
 | PG19＋ORCA＋Daft／PG 基线 | [postgres](https://github.com/qiumingcheng/postgres) | `codex/migrate-pg19-orca-daft` | `7873db5369b967dd53984df34fd800003410d04f` | `postgres19/` |
 | PG19＋ORCA＋Daft／优化器与 PG 执行适配 | [pgorca](https://github.com/qiumingcheng/pgorca) | `codex/migrate-pg19-orca-daft` | `3e19ab2a5729f6418c8fa382072664fd632c601e` | `pg_orca/` |
 | PG19＋ORCA＋Daft／Rust Bridge 与执行引擎 | [Daft](https://github.com/qiumingcheng/Daft) | `codex/migrate-pg19-orca-daft` | `285faf468114b0d7b839c1bcf611c7e606b3dcff` | `daft/` |
-| 原生湖 SQL074／内核、扩展、SDK6、文档与测试 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server/tree/codex/migrate-native-lake) | `codex/migrate-native-lake` | `c14b70df7201a5de61afd5d1be64c354259632ab` | `.worktrees/opengauss-native-lake/` |
+| 原生湖 SQL074／内核、扩展、SDK6、文档与测试 | [openGauss-server](https://github.com/qiumingcheng/openGauss-server/tree/codex/migrate-native-lake) | `codex/migrate-native-lake` | `b77facf7edd09a5481b968749a1c32e66eb1d1c0` | `.worktrees/opengauss-native-lake/` |
 
+- **2026-11-22 原生湖全量用例 FastCheck 接入**：`b77facf7edd09a5481b968749a1c32e66eb1d1c0` 增加完整分组 `.og_lake`，41 个调度条目覆盖 175 个已实现的注册用例、130 个独立测试脚本及归档套件和组件。11 个资格门有单独分组。本机 20 个不同调度条目实测通过。全量复测需配置原历史构建、夹具和独立脚本参数。配置和结果见[完整指南](公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端迁移与异地复测完整指南.md#2026-11-22-原生湖全量用例-fastcheck-接入)和 `native_lake_fastcheck_publication`。
 - **2026-11-22 SDK6 隔离 SQL FastCheck 看护**：`c14b70df7201a5de61afd5d1be64c354259632ab` 新增专用分组，用 `make -C src/test/regress fastcheck PART=.og_lake_sdk6` 调度。实跑 1/1，内置 17/17。未提供配置和错误 SDK 哈希均判失败。修正两处等价单节点角色判断并保留 FastCheck 静态门，涉及的向量 SMP 31/31、JSON/COPY 41/41。配置见[完整指南](公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端迁移与异地复测完整指南.md#2026-11-22-sdk6-隔离-sql-fastcheck-看护)和 `sdk6_fastcheck_publication`。
 
 - **2026-11-22 原生湖 P1 本机增量复测**：普通快进发布 `d090c24f8553b8e50583706a542a2ad69e73ffd9`。Debug 增量构建及 SQL 冒烟通过，产品源码无变化。Release 147 项和四阶段性能、三画像兼容 399 项、历史三画像各 16 次调用及 datavec 3/3、SDK6 四组与私有 SQL 17/17 均有通过结果。修复 SQL069 快照夹具、SQL064 并行设置、SDK6 隔离加载及相关编排。两次历史非零退出和 ann-debug 补跑各有回执，实例已停止且配置恢复。见[完整指南](公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端迁移与异地复测完整指南.md#2026-11-22-p1-增量复测)和 `test_assets_retest_publication`。

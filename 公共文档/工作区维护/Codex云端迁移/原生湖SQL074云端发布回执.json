@@ -7494,5 +7494,49 @@
       "semantics": "equivalent single-node runtime role predicates"
     },
     "original_pg_regress_macro_guard_preserved": true
+  },
+  "native_lake_fastcheck_publication": {
+    "date": "2026-11-22",
+    "scope": "openGauss FastCheck schedules for the published native lake executable inventory",
+    "product": {
+      "branch": "codex/migrate-native-lake",
+      "parent": "c14b70df7201a5de61afd5d1be64c354259632ab",
+      "commit": "b77facf7edd09a5481b968749a1c32e66eb1d1c0",
+      "fast_forward_verified": true
+    },
+    "workspace": {
+      "branch": "main",
+      "parent": "cb881386e1ad2e5a520124e8db9d71acd8b96514"
+    },
+    "inventory": {
+      "full_schedule_entries": 41,
+      "unique_scheduler_entries_including_special_groups": 43,
+      "component_scheduler_entries": 30,
+      "implemented_registry_cases": 175,
+      "specification_only_registry_entries": 101,
+      "standalone_test_scripts": 130,
+      "standalone_support_entries": 22,
+      "separate_qualification_gates": 11
+    },
+    "validation": {
+      "status": "selected_native_fastcheck_passed",
+      "scope": "selected native FastCheck runs",
+      "unique_entries_passed": 20,
+      "smoke_entries_passed": 6,
+      "release_long_entries_passed": 3,
+      "release_history_suite_invocations": 15,
+      "datavec_passed": 3,
+      "additional_entries_passed": 11,
+      "sdk6_isolated_sql_checks_passed": 17,
+      "full_schedule_run": false,
+      "standalone_missing_args_blocked": 130,
+      "sql020_pipeline_missing_historical_workspace_rejected": true,
+      "existing_driver_assertions_preserved": 6,
+      "instances_stopped": true,
+      "configs_restored": true
+    },
+    "product_source_changes": 0,
+    "force_update": false,
+    "created_pr": false
   }
 }
