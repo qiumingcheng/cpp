@@ -6904,5 +6904,65 @@
     "force_update": false,
     "history_rewrite": false,
     "created_pr": false
+  },
+  "test_inventory_publication": {
+    "date": "2026-11-22",
+    "scope": "Publish pending test checklist and update guide inventory; P0 documentation only",
+    "product": {
+      "repository": "qiumingcheng/openGauss-server",
+      "branch": "codex/migrate-native-lake",
+      "parent": "5500741abf868ab6dcd71afdc2636395d7b1934a",
+      "commit": "439bed718d96b0e7caf4162301a402ee15a8f351",
+      "tree": "0de6d8c5a8045ab849690275439a268df379844c",
+      "files": [
+        {
+          "path": "公共文档/openGauss原生湖存储/原生湖SQL074待提交与补充测试用例清单.md",
+          "bytes": 17492,
+          "sha256": "fcf419cfc0ebf7c8cc6cb2fb8574ce5707ba1b3cf8aa72cf71c5b421189d8ff5",
+          "git_blob": "700fe08e675c8e2e62378cf15ea623c70c3f3440"
+        },
+        {
+          "path": "公共文档/openGauss原生湖存储/迁移与异地复测指南.md",
+          "bytes": 60921,
+          "sha256": "fca08664a9d0d339d834c7e856de372df57498f67e8fc31b9e83392691011b6e",
+          "git_blob": "3d6cb732256027109f003f792700da488e16d272"
+        }
+      ],
+      "fast_forward": true,
+      "exact_content_readback": true
+    },
+    "workspace": {
+      "repository": "qiumingcheng/cpp",
+      "branch": "main",
+      "parent": "03fbebcf4b94c19ba2a58551da527875337974a0",
+      "files": [
+        "AGENTS.md",
+        "公共文档/工作区维护/Codex云端迁移/原生湖SQL074待提交与补充测试用例清单.md",
+        "公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端迁移与异地复测完整指南.md",
+        "公共文档/工作区维护/Codex云端迁移/原生湖SQL074云端发布回执.json"
+      ],
+      "commit_identity": "本回执随外层文档提交发布；提交 SHA 由 Git 历史确定，不嵌入自身 SHA。"
+    },
+    "confirmed_inventory": {
+      "basis": "5500741abf868ab6dcd71afdc2636395d7b1934a",
+      "integration_files": 341,
+      "sdk_files": 50,
+      "added_paths": [
+        "sdk/provider_reader_budget_test.c",
+        "sdk/test_reader_budget.py",
+        "native_build_entry.sh"
+      ]
+    },
+    "pending_work": "Checklist P1/P2 are not executed in this documentation-only publication.",
+    "prior_retest_record_preserved": true,
+    "source_code_changes": 0,
+    "tests_run": false,
+    "build_run": false,
+    "wsl_commit": false,
+    "wsl_push": false,
+    "force_update": false,
+    "history_rewrite": false,
+    "created_pr": false,
+    "method": "GitHub Cloud Connector Git Data API; expected parent checked; force=false"
   }
 }
