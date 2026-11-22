@@ -7447,5 +7447,52 @@
     "older_publication_records_preserved": true,
     "force_update": false,
     "created_pr": false
+  },
+  "sdk6_fastcheck_publication": {
+    "date": "2026-11-22",
+    "scope": "SDK6 isolated SQL scheduled by the openGauss FastCheck executable case dispatcher",
+    "product": {
+      "branch": "codex/migrate-native-lake",
+      "parent": "d090c24f8553b8e50583706a542a2ad69e73ffd9",
+      "commit": "c14b70df7201a5de61afd5d1be64c354259632ab",
+      "fast_forward_verified": true
+    },
+    "workspace": {
+      "branch": "main",
+      "parent": "9cf863d815e292e7fcdf7a3db3d374f9c6d452ef"
+    },
+    "validation": {
+      "status": "passed",
+      "scope": "SDK6 isolated SQL FastCheck lane",
+      "scheduler": "make -C src/test/regress fastcheck PART=.og_lake_sdk6",
+      "scheduler_passed": 1,
+      "sql_checks_passed": 17,
+      "fixture_sha256": "454b450b7d9770406dc14c0005c9f7f36cfb96fdcc1d7ccd50d020e17279d7f4",
+      "negative": {
+        "missing_config_make_exit": 2,
+        "incorrect_sdk_sha_make_exit": 2
+      },
+      "kernel_compat": {
+        "Vec_SMP": 31,
+        "JSON_COPY": 41
+      },
+      "macro_guard": {
+        "before": 1389,
+        "required_and_after": 1387
+      },
+      "build_report_sha256": "658ee47615bb55a07837215db2de4f6aff3fc246ef61d2b65fecff68d5f42e49",
+      "binary_sha256": "e3d7606e13963e2e63283bc6a695c5f49bd017af8084acaf2ef77087583a528a",
+      "final_probe_receipt_sha256": "2f56e8b2abd3fba62c9ca463b2e70344607370a6b35f8ecf5573f532b3eb7d1c",
+      "debug_config_sha256": "58aa46ec445117001c21e8902de18b16f8bd33aef06926edd22b9283940c1145",
+      "all_instances_stopped": true,
+      "successful_private_runtime_removed": true
+    },
+    "kernel_changes": {
+      "files": 2,
+      "added_lines": 2,
+      "removed_lines": 2,
+      "semantics": "equivalent single-node runtime role predicates"
+    },
+    "original_pg_regress_macro_guard_preserved": true
   }
 }
