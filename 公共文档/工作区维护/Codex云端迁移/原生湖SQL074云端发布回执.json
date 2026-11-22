@@ -7538,5 +7538,109 @@
     "product_source_changes": 0,
     "force_update": false,
     "created_pr": false
+  },
+  "sql074_review_fixes": {
+    "date": "2026-11-22",
+    "product": {
+      "branch": "codex/migrate-native-lake",
+      "commit": "44042b13f5866845511a44736dbcbdfa7e4e0145",
+      "parent": "b77facf7edd09a5481b968749a1c32e66eb1d1c0",
+      "fast_forward_verified": true
+    },
+    "workspace": {
+      "branch": "main",
+      "parent": "4d49dffd213fd2fb7863565ac312062584fb44a3"
+    },
+    "validation": {
+      "release_modes": [
+        "ann",
+        "active_h",
+        "pgl0",
+        "files"
+      ],
+      "debug_partition_and_32D_raw_ip_on_first_patched_build": true,
+      "debug_final_modes": [
+        "files",
+        "active-h",
+        "json_compatibility"
+      ],
+      "sdk_pg_regress_entries_passed": 9,
+      "full_41_entry_fastcheck_run": false,
+      "compatibility_checks": {
+        "release_json": 41,
+        "release_ops070": 46,
+        "debug_json": 41,
+        "release_truncate_pq": 50,
+        "release_vec_smp_compat": 31,
+        "release_smp_closure": 19
+      },
+      "compiled_version_comparisons": 18748,
+      "installed_upgrades": 42,
+      "checks_across_installed_versions": 559
+    },
+    "build_sha256": {
+      "release": "4f019bc9881c8f5a9ca9af5343b0b7adb4d1c0e25e2555196779e87e81cdec31",
+      "debug_final": "8de3b32ad38784c85f60b7e81b4ae041d72613e9a366bb4413990068994bdff1"
+    },
+    "pq": [
+      {
+        "rows": 8000,
+        "paired_queries": 100,
+        "natural_dop1_pq": false,
+        "exact_p50_ms": 85.68,
+        "pq_dop1_p50_ms": 102.816,
+        "mean_recall_at_10": 1.0,
+        "min_recall_at_10": 1.0
+      },
+      {
+        "rows": 20000,
+        "paired_queries": 100,
+        "natural_dop1_pq": true,
+        "exact_p50_ms": 115.697,
+        "pq_dop1_p50_ms": 111.142,
+        "mean_recall_at_10": 0.987,
+        "min_recall_at_10": 0.0
+      },
+      {
+        "rows": 50000,
+        "paired_queries": 100,
+        "natural_dop1_pq": true,
+        "exact_p50_ms": 220.19,
+        "pq_dop1_p50_ms": 165.118,
+        "mean_recall_at_10": 0.985,
+        "min_recall_at_10": 0.3
+      }
+    ],
+    "pq_16k_validation": [
+      {
+        "files": 4,
+        "paired_queries": 30,
+        "natural_dop1_pq": true,
+        "exact_p50_ms": 107.406,
+        "pq_dop1_p50_ms": 111.13
+      },
+      {
+        "files": 8,
+        "paired_queries": 30,
+        "natural_dop1_pq": false,
+        "exact_p50_ms": 112.52,
+        "pq_dop1_p50_ms": 123.789
+      },
+      {
+        "files": 4,
+        "paired_queries": 100,
+        "natural_dop1_pq": true,
+        "exact_p50_ms": 99.34,
+        "pq_dop1_p50_ms": 102.208
+      }
+    ],
+    "million_row_scan": {
+      "data_files": 16,
+      "vec_dop4_vs_row_dop1": 2.481
+    },
+    "guide": "https://github.com/qiumingcheng/openGauss-server/blob/44042b13f5866845511a44736dbcbdfa7e4e0145/%E5%85%AC%E5%85%B1%E6%96%87%E6%A1%A3/openGauss%E5%8E%9F%E7%94%9F%E6%B9%96%E5%AD%98%E5%82%A8/%E8%BF%81%E7%A7%BB%E4%B8%8E%E5%BC%82%E5%9C%B0%E5%A4%8D%E6%B5%8B%E6%8C%87%E5%8D%97.md",
+    "private_instances_stopped": true,
+    "force_update": false,
+    "created_pr": false
   }
 }
