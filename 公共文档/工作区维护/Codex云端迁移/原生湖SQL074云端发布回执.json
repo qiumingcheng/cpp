@@ -7642,5 +7642,136 @@
     "private_instances_stopped": true,
     "force_update": false,
     "created_pr": false
+  },
+  "native_lake_union_all_publication": {
+    "date": "2026-11-23",
+    "product": {
+      "repository": "qiumingcheng/openGauss-server",
+      "branch": "codex/migrate-native-lake",
+      "previous_remote_tip": "6d729baffafd4ff1f42bdc3d16b8fcdf807528a6",
+      "verified_remote_tip": "16ea3ae0b758db6787318332f2cf72822339c245",
+      "tree": "a94689a4f879718fb8f8012d3d873aae0933fe5c",
+      "url": "https://github.com/qiumingcheng/openGauss-server/commit/16ea3ae0b758db6787318332f2cf72822339c245",
+      "union_all_source_tip": "533c4bde563f6a221f176bd41d2bffc78223c2a3",
+      "union_all_no_where_fix": "db7a0a4771ef6aa5af11af808f3f760f823495d6",
+      "first_parent_lake_commits_oldest_first": [
+        {
+          "original": "a21cf3a8a7964df347163d1bb0ec06cda40a2c3a",
+          "integrated": "bace15e1ac7d8b04e26f735b890390c2696b57f8"
+        },
+        {
+          "original": "acf24cec18768ffc4b2e707788e65346dc879649",
+          "integrated": "0684a295d67ff95d911cc1f67075c19d6ffd1b88"
+        },
+        {
+          "original": "3ea97fb36aa26e46d7b73fe3db4262121d680e8d",
+          "integrated": "19ad9da022ad49c7e5c200817129d79a4d7a8fad"
+        },
+        {
+          "original": "2437eab528250231f71f0758d8c1c1a8532f3a93",
+          "integrated": "c9080266beabf8ff64a163f4c4a5076c567f243c"
+        },
+        {
+          "original": "6d729baffafd4ff1f42bdc3d16b8fcdf807528a6",
+          "integrated": "16ea3ae0b758db6787318332f2cf72822339c245"
+        }
+      ],
+      "previous_remote_tip_is_second_parent": true,
+      "changed_paths_vs_previous_remote": [
+        "M\tsrc/gausskernel/optimizer/prep/preptopk.cpp",
+        "A\tsrc/test/regress/expected/union_all_required_columns_no_where.out",
+        "M\tsrc/test/regress/parallel_schedule.union_all_required_columns",
+        "A\tsrc/test/regress/sql/union_all_required_columns_no_where.sql"
+      ],
+      "push": "fast-forward"
+    },
+    "workspace": {
+      "repository": "qiumingcheng/cpp",
+      "branch": "main",
+      "product_directory_relative_to_cpp": "opengauss-native-lake/",
+      "binarylibs_relative_to_cpp": "../binarylibs/",
+      "release_env_relative_to_cpp": ".runtime/opengauss-native-lake/release/env.sh"
+    },
+    "validation": {
+      "debug_A": {
+        "union_all_required_columns": "ok",
+        "union_all_required_columns_safety": "ok",
+        "union_all_ann_feature_matrix": "ok",
+        "union_all_required_columns_no_where": "ok",
+        "ann_orderby_distance_reuse": "ok",
+        "ann_orderby_distance_reuse_safety": "ok",
+        "ann_orderby_distance_reuse_lifecycle": "ok",
+        "test_union_all_orderby": "ok",
+        "diskann_vector": "ok"
+      },
+      "release_A": {
+        "union_all_required_columns": "ok",
+        "union_all_required_columns_safety": "ok",
+        "union_all_ann_feature_matrix": "ok",
+        "union_all_required_columns_no_where": "ok",
+        "ann_orderby_distance_reuse": "FAILED",
+        "ann_orderby_distance_reuse_safety": "ok",
+        "ann_orderby_distance_reuse_lifecycle": "ok",
+        "test_union_all_orderby": "ok",
+        "diskann_vector": "ok"
+      },
+      "release_distance_reuse": {
+        "observed_sort_memory_kB": [
+          25,
+          26
+        ],
+        "expected_sort_memory_kB": [
+          26,
+          27
+        ],
+        "compared_lines_excluding_runtime": 707,
+        "excluded_runtime_lines_per_version": [
+          8,
+          8
+        ],
+        "old_and_new_normalized_output_sha256": "27e2ceec323fac367daf596f51d2f1f3e7611f10908fac8373fee958e3a37f12"
+      },
+      "with_ties_ctas_rows": {
+        "old": 1,
+        "new": 1,
+        "A_mode": 5
+      },
+      "union_all_lake": {
+        "parquet_files": 2,
+        "rows": 4,
+        "rows_with_pruning": [
+          "1",
+          "2",
+          "2",
+          "3"
+        ],
+        "rows_without_pruning": [
+          "1",
+          "2",
+          "2",
+          "3"
+        ],
+        "optimizer": "old=3 new=1 where_pushed=false outer_recheck=false"
+      },
+      "parquet_and_pq": {
+        "rows": 1200,
+        "dimensions": 32,
+        "ready_pq_segments": 4,
+        "top_10": [
+          871,
+          453,
+          35,
+          810,
+          392,
+          967,
+          906,
+          549,
+          131,
+          488
+        ]
+      }
+    },
+    "force_update": false,
+    "created_pr": false
   }
 }
